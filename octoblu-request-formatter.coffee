@@ -6,8 +6,7 @@ class OctobluRequestFormatter
     @channelJson = channelJson
     @resources   = @channelJson.application.resources
 
-  processMessage: (message, auth, defaultUrlParams) =>
-    {payload} = message
+  processMessage: (payload, auth, defaultUrlParams) =>
     {endpoint, params} = payload
     requestParams = params
 
