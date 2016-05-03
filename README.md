@@ -37,14 +37,15 @@ onMessage: (message) =>
 ### example response
 
 ```cson
-{ Accept: 'application/json',
+{
+  Accept: 'application/json',
     'User-Agent': 'Octoblu/1.0.0',
     'x-li-format': 'json' },
- uri: 'fdfd.com:80/xenmobile/api/v1/localusersgroups/Bob',
- method: 'GET',
- followAllRedirects: true,
- qs: {},
- strictSSL: false,
- form: {} }
-
+  uri: 'fdfd.com:80/xenmobile/api/v1/localusersgroups/Bob',
+  method: 'GET',
+  followAllRedirects: true,
+  qs: {},
+  strictSSL: false,
+  form: {}
+}
  ```
