@@ -28,11 +28,11 @@ class SchemaGenerator
     ]
 
     _.forEach @resources, (resource) =>
-      current = count.toString()
-      count = count + 1
+      current = resource.displayName
+      # count = count + 1
       ACTION_MAP.push {
         value: current
-        name:  resource.displayName
+        name:  current
       }
 
       _.forEach resource.params, (param) =>
@@ -41,6 +41,7 @@ class SchemaGenerator
           MESSAGE_FORM_SCHEMA[index].condition = MESSAGE_FORM_SCHEMA[index].condition + " || model.endpoint == '" + current + "'"
         else
           MESSAGE_SCHEMA.properties.params.properties[param.name] = {
+            title: param.displayName
             type: param.type
           }
           if param.type == "array"
