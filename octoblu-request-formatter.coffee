@@ -1,10 +1,12 @@
-_     = require 'lodash'
-debug = require('debug')('request-formatter:index')
+_               = require 'lodash'
+SchemaGenerator = require './schema-generator.coffee'
+debug           = require('debug')('request-formatter:index')
 
 class OctobluRequestFormatter
   constructor: (channelJson) ->
     @channelJson = channelJson
     @resources   = @channelJson.application.resources
+    @schemaGenerator = new SchemaGenerator(@resources)
 
   processMessage: (payload, auth, defaultUrlParams) =>
     {endpoint, params} = payload
@@ -74,5 +76,8 @@ class OctobluRequestFormatter
         config.form = bodyParams
 
     config
+
+  buildSchema: () =>
+    @schemaGenerator.generate()
 
 module.exports = OctobluRequestFormatter
