@@ -80,4 +80,8 @@ class OctobluRequestFormatter
   buildSchema: () =>
     @schemaGenerator.generate()
 
+  _omitEmptyObjects: (object) =>
+  _.omit object, (value) =>
+    _.isObject(value) && _.isEmpty(value)
+
 module.exports = OctobluRequestFormatter
