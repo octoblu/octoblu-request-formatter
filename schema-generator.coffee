@@ -48,6 +48,9 @@ class SchemaGenerator
             MESSAGE_SCHEMA.properties.params.properties[param.name].items = {
               type: "string"
             }
+          if param.type == "object"
+            if _.has param, 'schema'
+              MESSAGE_SCHEMA.properties.params.properties[param.name].properties = param.schema.properties
           MESSAGE_FORM_SCHEMA.push {
             key: "params." + param.name
             condition: "model.endpoint == '" + current + "'"
