@@ -45,9 +45,12 @@ class SchemaGenerator
             type: param.type
           }
           if param.type == "array"
-            MESSAGE_SCHEMA.properties.params.properties[param.name].items = {
-              type: "string"
-            }
+            if _.has param, 'schema'
+              MESSAGE_SCHEMA.properties.params.properties[param.name] = param.schema
+            else
+              MESSAGE_SCHEMA.properties.params.properties[param.name].items = {
+                type: "string"
+              }
           if param.type == "object"
             if _.has param, 'schema'
               MESSAGE_SCHEMA.properties.params.properties[param.name].properties = param.schema.properties
